@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
+    </link>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
+    </link>
+    <title>新竹我照你 - 安居資訊</title>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <!--=======================================
+      All Css Style link
+    ===========================================-->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- FAVICONS -->
+    <link rel="icon" href="assets/img/favicon-16x16.png" type="image/png" sizes="16x16">
+    <link rel="shortcut icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/favicon-16x16.png">
+
+    <link rel="apple-touch-icon-precomposed" type="image/x-icon" href="assets/img/apple-icon-72x72.png" sizes="72x72" />
+    <link rel="apple-touch-icon-precomposed" type="image/x-icon" href="assets/img/apple-icon-114x114.png"
+        sizes="114x114" />
+    <link rel="apple-touch-icon-precomposed" type="image/x-icon" href="assets/img/apple-icon-144x144.png"
+        sizes="144x144" />
+    <link rel="apple-touch-icon-precomposed" type="image/x-icon" href="assets/img/favicon-16x16.png" />
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
+    </link>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
+    </link>
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+</head>
+
+<body>
+
+    <!-- Pre Loader Area start -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+    <!-- Pre Loader Area End -->
+
+    <!-- Menu Area Start -->
+    <section class="menu-section-area padding-zero">
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top d-none d-sm-none d-md-block d-lg-block d-xl-block"
+            id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="assets/img/hsinchucare_logo.png"
+                        alt="hsinchucare"></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">主頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="live.html">安居資訊</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="teach.html">長照懶人包</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">關於我們</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Navigation -->
+
+        <!-- Mobile Menu Start -->
+        <nav class="mobile_menu hidden d-none">
+            <a href="index.html"><img class="mobile-logo" src="assets/img/hsinchucare_logo.png" alt="hsinchucare"></a>
+            <ul class="nav navbar-nav navbar-right menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">主頁</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="live.html">安居資訊</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="teach.html">長照懶人包</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">關於我們</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Mobile Menu End -->
+    </section>
+    <!-- Menu Area End -->
+
+    <style>
+        .containerList {
+            height: calc(100vh - 100px);
+            display: grid;
+            grid-template-columns: 20% auto;
+            margin-top: 90px
+        }
+
+        .buttonType {
+            background-color:#eb7012;
+            border-radius:28px;
+            border:1px solid #401e00;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:17px;
+            padding:5px 10px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #2f6627;
+        }
+
+        .geoButton {
+            background-color:#42403e;
+            border-radius:28px;
+            border:1px solid #401e00;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:17px;
+            padding:15px 22px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #2f6627;
+        }
+    </style>
+    <div class="containerList">
+        <div id="location"
+            style="display: grid;grid-template-rows: 200px auto;height: 100%;overflow-y: scroll;justify-items: center;">
+            <div
+                style="background-color: #ffe4d2; display: grid;grid-template-rows:100px auto ; place-items:center center ;width: 90%;  ">
+                <div><h3>長照安居資訊地圖</h3></div>
+                <div id="locationComponents" style="display: grid;grid-template-rows: 50% 50%;">
+                </div>
+            </div>
+            <div id="distList"></div>
+        </div>
+        <div id="map">
+        </div>
+        <input style="position: absolute;  bottom: 10vh; right: 40px; z-index: 9999" type="button"
+            class="geoButton" id="jsGeoBtn" value="定位">
+    </div>
+
+    <!--=======================================
+        <input type="button" id="button-center" value="center">
+        <input type="button" id="button-park" value="park">
+        <input type="button" id="button-pharmacy" value="pharmacy">
+        ===========================================-->
+
+
+    <!-- Our Expert Trainers Area End -->
+
+    <!--=======================================
+          All Jquery Script link
+    ===========================================-->
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- <script src="https://static.iskwen.com/jquery-v3.4.1/jquery-3.4.1.min.js"></script> -->
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/jquery/popper.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- ==== Plugin JavaScript ==== -->
+
+    <!-- jQuery owl carousel -->
+    <script src="assets/js/owl.carousel.min.js"></script>
+
+    <script src="assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!--  Counter Up JavaScript-->
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+
+    <!--Parallax Script-->
+    <script src="assets/js/TweenMax.min.js"></script>
+
+    <!--VenoBox Script-->
+    <script src="assets/js/venobox.min.js"></script>
+
+    <!--WOW JS Script-->
+    <script src="assets/js/wow.min.js"></script>
+
+    <!--AOS JS Script-->
+    <script src="assets/js/aos.js"></script>
+
+    <!--Paroller JS Script-->
+    <script src="assets/js/jquery.paroller.min.js"></script>
+
+    <!--Mean Menu/Mobile Menu Script-->
+    <script src="assets/js/jquery.meanmenu.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="assets/js/custom.js"></script>
+
+
+    <!-- leaflet -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
+    <script src="https://static.iskwen.com/layui-v2.5.5/layui/layui.all.js"></script>
+    <script src="https://static.iskwen.com/ly2ui-v1.0.0/ly2ui.all.js" charset="utf-8"></script>
+    <script src="assets/js/all.js?v=1.0.4"></script>
+</body>
+
+</html>
